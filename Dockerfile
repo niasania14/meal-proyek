@@ -17,4 +17,4 @@ COPY . /app/
 CMD ["python", "app.py"]
 
 # Expose port untuk akses ke aplikasi
-EXPOSE 5000
+EXPOSE 8081
