@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pencatatan Pengeluaran Makan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Pencatatan Pengeluaran Makan</h1>
+    
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Nama Pengeluaran" required>
+        <input type="text" name="category" placeholder="Kategori Pengeluaran" required>
+        <input type="number" name="amount" placeholder="Jumlah Pengeluaran" step="0.01" required>
+        <input type="date" name="date" required>
+        <button type="submit">Tambah Pengeluaran</button>
+    </form>
+
+    <h2>Pengeluaran Hari Ini</h2>
+    <ul>
+        {% for expense in expenses %}
+        <li>
+            {{ expense.name }} - {{ expense.category }} - Rp. {{ expense.amount }} ({{ expense.date }})
+            <a href="/delete/{{ expense.id }}">Hapus</a>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <h3>Total Pengeluaran: Rp. {{ total }}</h3>
+</body>
+</html>
